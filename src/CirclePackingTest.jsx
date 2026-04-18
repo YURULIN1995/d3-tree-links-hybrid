@@ -22,11 +22,11 @@ const CirclePackingTest = ({ data, onBack }) => {
       .attr("viewBox", "0 -5 10 10")
       // 【修正點】：refX 設為 10（箭頭三角形的底邊）。
       // 這樣 Marker 的原點會位於三角形的幾何尖端，使其精確指在連線的終點座標上。
-      .attr("refX", 10) 
+      .attr("refX", 7) 
       .attr("refY", 0)
       .attr("orient", "auto") // 讓箭頭隨曲線角度自動旋轉
-      .attr("markerWidth", 8)
-      .attr("markerHeight", 8)
+      .attr("markerWidth", 5.6)
+      .attr("markerHeight", 5.6)
       .append("path")
       .attr("d", "M0,-5L10,0L0,5") // 畫出三角形
       .attr("fill", "#ffcc00");
@@ -34,7 +34,7 @@ const CirclePackingTest = ({ data, onBack }) => {
     // 3. 設定 Layout 計算器 (d3.pack)
     const pack = d3.pack()
       .size([width - 100, height - 100])
-      .padding(40); // 增加間距，給群組標籤留空間
+      .padding(10); // 增加間距，給群組標籤留空間
 
     // 4. 建立資料階層並執行計算
     const root = d3.hierarchy(data.tree)
@@ -82,7 +82,7 @@ const CirclePackingTest = ({ data, onBack }) => {
           // 繪製二次貝茲曲線 (Quadratic Curve)
           // 控制點 (midX, midY) 決定往下彎曲的幅度
           const midX = (source.x + target.x) / 2;
-          const midY = Math.max(source.y, target.y) + 120; // 往下彎曲 120px
+          const midY = Math.max(source.y, target.y) + 50; // 往下彎曲 50px
 
           g.append("path")
             .attr("d", `M${source.x},${source.y} Q${midX},${midY} ${target.x},${target.y}`)
@@ -107,7 +107,7 @@ const CirclePackingTest = ({ data, onBack }) => {
       .attr("y", d => d.y)
       .text(d => d.data.name)
       // 動態調整 dy 位移：大圓標籤往上「漂浮」，小圓置中
-      .attr("dy", d => d.children ? `-${(d.r / 10) + 1.2}em` : "0.35em") 
+      .attr("dy", d => d.children ? `-${(d.r / 20)}em` : "0.35em") 
       .style("text-anchor", "middle") // 水平置中
       .style("fill", "#fff")
       .style("font-size", d => d.children ? "16px" : "11px")
