@@ -1,0 +1,19 @@
+{
+  "tree": {
+    "name": "Root",
+    "children": [
+      {
+        "name": "Group_A",
+        "children": [{ "name": "A1" }, { "name": "A2" }]
+      },
+      {
+        "name": "Group_B",
+        "children": [{ "name": "B1" }, { "name": "B2" }, { "name": "B3" }]
+      }
+    ]
+  },
+  "connections": [
+    { "source": "A1", "target": "B2" },
+    { "source": "A2", "target": "B1" }
+  ]
+}
